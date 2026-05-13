@@ -149,14 +149,23 @@ def ensure_mabc_data_for_case(ops_lite_case_dir: str | Path, case_name: str,
     _write_json(case_out / "topology" / "endpoint_maps.json", topo_clean)
 
     # ---------- label (alert service + timestamp) ----------
+    # mABC expects nested dict format:
+    # {
+    #   "<timestamp>": {
+    #     "<alert_service>": [["svc1", "svc2"], ...]   # causal chains
+    #   }
+    # }
     injection_path = ops_dir / "injection.json"
     causal_path = ops_dir / "causal_graph.json"
     alert_svc, alert_time = _extract_alert(injection_path, causal_path, df)
-    label_entry = [{
-        "case": case_name,
-        "alert_service": alert_svc,
-        "alert_timestamp": alert_time,
-    }]
+    chains = _extract_chains(causal_path)
+    label_entry: dict = {}
+    if alert_time and alert_svc:
+        label_entry = {
+            alert_time: {
+                alert_svc: chains or [[alert_svc]],
+            }
+        }
     _write_json(case_out / "label" / "label.json", label_entry)
 
     logger.info(f"mabc data adapter: {case_name} ready at {case_out}")
@@ -205,6 +214,36 @@ def _extract_alert(injection_path: Path, causal_path: Path, df) -> tuple[str | N
             pass
 
     return alert_svc, alert_time
+
+
+def _extract_chains(causal_path: Path) -> list[list[str]]:
+    """Extract propagation chains from causal_graph.json edges.
+
+    mABC expects [["svc_root", "svc_intermediate", ...], ...].
+    """
+    if not causal_path.exists():
+        return []
+    try:
+        cg = json.loads(causal_path.read_text())
+        edges = cg.get("edges") or []
+        nodes = cg.get("nodes") or []
+        # Build a parent → children map from edges
+        if not edges:
+            return [[n.get("name") or n.get("service") or n.get("component", "?")
+                     for n in nodes[:3]]] if nodes else []
+        # edges may be [{from, to}] or [{source, target}] depending on schema
+        chains: list[list[str]] = []
+        for e in edges:
+            src = e.get("from") or e.get("source") or ""
+            dst = e.get("to") or e.get("target") or ""
+            if src and dst:
+                # strip ":<state>" suffix if present
+                src_svc = src.split(":")[0] if ":" in src else src
+                dst_svc = dst.split(":")[0] if ":" in dst else dst
+                chains.append([src_svc, dst_svc])
+        return chains
+    except Exception:
+        return []
 
 
 if __name__ == "__main__":

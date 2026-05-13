@@ -23,6 +23,10 @@ os.chdir(MABC_ROOT)
 try:
     from sota_rca.tracker import auto_install
     _tracker = auto_install()
+except ImportError:
+    _tracker = None  # sota_rca not on PYTHONPATH; tracker disabled
+
+
 def extract_case_name_from_data_dir(data_dir):
     """Extract case name from RolloutRunner data_dir path.
 
@@ -487,7 +491,7 @@ def main():
         "trajectory": trajectory,
     }
     if _tracker:
-        result["usage"] = _tracker.get_usage()
+        result["usage"] = (_tracker.get_usage() if _tracker else {})
 
     # Single-line JSON output (runner parses last line)
     print(json.dumps(result, ensure_ascii=False))

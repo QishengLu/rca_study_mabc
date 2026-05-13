@@ -1,0 +1,252 @@
+{
+  "attractions": {
+    "2026-05-01 17:19:00": {
+      "calls": 75,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.62,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:20:00": {
+      "calls": 57,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.64,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:21:00": {
+      "calls": 77,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.59,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:22:00": {
+      "calls": 77,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.6,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:23:00": {
+      "calls": 123,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.61,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:24:00": {
+      "calls": 9,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.72,
+      "timeout_rate": 0.0
+    }
+  },
+  "frontend": {
+    "2026-05-01 17:19:00": {
+      "calls": 782,
+      "success_rate": 40.15,
+      "error_rate": 59.85,
+      "average_duration": 0.65,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:20:00": {
+      "calls": 848,
+      "success_rate": 33.49,
+      "error_rate": 66.51,
+      "average_duration": 0.49,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:21:00": {
+      "calls": 968,
+      "success_rate": 36.78,
+      "error_rate": 63.22,
+      "average_duration": 0.54,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:22:00": {
+      "calls": 960,
+      "success_rate": 33.75,
+      "error_rate": 66.25,
+      "average_duration": 0.52,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:23:00": {
+      "calls": 1516,
+      "success_rate": 35.75,
+      "error_rate": 64.25,
+      "average_duration": 0.54,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:24:00": {
+      "calls": 171,
+      "success_rate": 25.15,
+      "error_rate": 74.85,
+      "average_duration": 0.49,
+      "timeout_rate": 0.0
+    }
+  },
+  "recommendation": {
+    "2026-05-01 17:19:00": {
+      "calls": 116,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.1,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:20:00": {
+      "calls": 111,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.09,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:21:00": {
+      "calls": 103,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.09,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:22:00": {
+      "calls": 129,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.09,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:23:00": {
+      "calls": 150,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.1,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:24:00": {
+      "calls": 16,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.09,
+      "timeout_rate": 0.0
+    }
+  },
+  "reservation": {
+    "2026-05-01 17:19:00": {
+      "calls": 5,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 2.5,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:20:00": {
+      "calls": 1,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 1.79,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:21:00": {
+      "calls": 4,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 2.79,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:23:00": {
+      "calls": 5,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 2.67,
+      "timeout_rate": 0.0
+    }
+  },
+  "search": {
+    "2026-05-01 17:19:00": {
+      "calls": 280,
+      "success_rate": 0.0,
+      "error_rate": 100.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:20:00": {
+      "calls": 322,
+      "success_rate": 0.0,
+      "error_rate": 100.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:21:00": {
+      "calls": 434,
+      "success_rate": 0.0,
+      "error_rate": 100.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:22:00": {
+      "calls": 420,
+      "success_rate": 0.0,
+      "error_rate": 100.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:23:00": {
+      "calls": 674,
+      "success_rate": 0.0,
+      "error_rate": 100.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:24:00": {
+      "calls": 96,
+      "success_rate": 0.0,
+      "error_rate": 100.0,
+      "average_duration": 0.07,
+      "timeout_rate": 0.0
+    }
+  },
+  "user": {
+    "2026-05-01 17:19:00": {
+      "calls": 76,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:20:00": {
+      "calls": 88,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:21:00": {
+      "calls": 79,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:22:00": {
+      "calls": 80,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:23:00": {
+      "calls": 132,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    },
+    "2026-05-01 17:24:00": {
+      "calls": 9,
+      "success_rate": 100.0,
+      "error_rate": 0.0,
+      "average_duration": 0.08,
+      "timeout_rate": 0.0
+    }
+  }
+}
