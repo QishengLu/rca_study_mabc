@@ -189,7 +189,11 @@ def run_mabc(case_dir):
             break
         break
 
-    question = (
+    # Base task description (mABC framework's own background + task spec).
+    # NOTE: removed hard-coded legacy CausalGraph schema (nodes/edges/state enum)
+    # which conflicted with the v3 v2 schema (root_causes/propagation/fault_kind).
+    # The schema is now injected by the schema_reminder helper below.
+    base_question = (
         f"Background: In a distributed microservices system, there are traces across services "
         f"which represent the dependency relationship between services.\n\n"
         f"Alert: Service {alert_svc} experiencing a significant increase in response time at {timestamp}.\n"
@@ -197,31 +201,19 @@ def run_mabc(case_dir):
         f"by analyzing the metric of service and the call trace, "
         f"and build a causal propagation graph showing how the fault propagated through the system.\n\n"
         f"During your investigation, keep track of:\n"
-        f"- Which services are affected (nodes) and their abnormal state\n"
-        f"- How faults propagate between services (edges)\n"
-        f"- Which service(s) are the root cause (the origin of the fault propagation)\n\n"
-        f"## Required Output Format\n\n"
-        f"Your final answer MUST be a CausalGraph JSON with this structure:\n"
-        f"```json\n"
-        f'{{\n'
-        f'  "nodes": [\n'
-        f'    {{"component": "ts-xxx-service", "kind": "service", "state": ["HIGH_LATENCY"], "timestamp": 1234567890}}\n'
-        f'  ],\n'
-        f'  "edges": [\n'
-        f'    {{"source": "ts-a-service", "target": "ts-b-service", "kind": "calls"}}\n'
-        f'  ],\n'
-        f'  "root_causes": [\n'
-        f'    {{"component": "ts-xxx-service", "kind": "service", "state": ["HIGH_ERROR_RATE"], "timestamp": 1234567890}}\n'
-        f'  ],\n'
-        f'  "component_to_service": {{}}\n'
-        f'}}\n'
-        f"```\n\n"
-        f"**Available States**: HEALTHY, HIGH_ERROR_RATE, HIGH_LATENCY, UNAVAILABLE, "
-        f"TIMEOUT, HIGH_CPU, HIGH_MEMORY, HIGH_DISK_USAGE, NETWORK_DELAY, NETWORK_LOSS, "
-        f"KILLED, PROCESS_PAUSED, CONNECTION_RESET\n\n"
-        f"**Available Node Kinds**: service, pod, container, span, deployment\n"
-        f"**Available Edge Kinds**: calls, depends_on, affects, routes_to\n"
+        f"- Which services are affected and their abnormal state\n"
+        f"- How faults propagate between services\n"
+        f"- Which service(s) are the root cause (the origin of the fault propagation)\n"
     )
+
+    # Prepend v2 schema reminder so the ProcessScheduler / experts know the
+    # target output format, without replacing mABC's internal scheduler /
+    # expert prompts (they remain unchanged).
+    try:
+        from sota_rca.prompts.schema_reminder import prepend_to_task
+        question = prepend_to_task(base_question, short=True)
+    except ImportError:
+        question = base_question
 
     # Stage 1: ProcessScheduler
     agent = ProcessScheduler()
